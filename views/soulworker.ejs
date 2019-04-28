@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include layout/head %>
+<% include layout/nav %>
+<body>
+    <div id="wrapper">
+        <div class="intro">
+            <h1><%= msg %></h1>
+            <ul class="notice">
+                <% for(let i = 0; i < list.length; i++) { %>
+                <li class="title">
+                    <p><%= list[i] %></p>
+                </li>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+</body>

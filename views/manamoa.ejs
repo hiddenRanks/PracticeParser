@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include layout/head %>
+<% include layout/nav %>
+<body>
+    <div id="wrapper">
+        <div class="intro">
+            <form method="post">
+                <div>
+                    <label>검색어</label>
+                    <input type="text" name="word" id="word" placeholder="검색어 입력">
+                </div>
+                <button type="submit">검색하기</button>
+            </form>
+
+            <% if(list != undefined) { %>
+            <h1><%= msg %></h1>
+            <ul class="searchResult">
+                <% for(let i = 0; i < list.length; i++) { %>
+                <li class="title">
+                    <p><%= list[i] %></p>
+                </li>
+                <% } %>
+            </ul>
+            <% } %>
+        </div>
+    </div>
+</body>
