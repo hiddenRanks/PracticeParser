@@ -1,0 +1,35 @@
+{
+  "name": "git",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ririblathmerhen/PracticeParser.git"
+  },
+  "keywords": [
+    "node.js"
+  ],
+  "author": "mongjja106",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ririblathmerhen/PracticeParser/issues"
+  },
+  "homepage": "https://github.com/ririblathmerhen/PracticeParser#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "bootstrap": "^4.3.1",
+    "cheerio": "^1.0.0-rc.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "express-session": "^1.16.1",
+    "express-session-mysql": "^0.4.3",
+    "jquery": "^3.4.0",
+    "mysql": "^2.17.1",
+    "popper.js": "^1.15.0",
+    "request": "^2.88.0"
+  }
+}
