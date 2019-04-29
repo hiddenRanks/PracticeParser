@@ -5,6 +5,18 @@ const path = require('path');
 const request = require('request');
 const cheerio = require('cheerio');
 const bodyParser = require('body-parser');
+const qs = require('querystring');
+const mysql = require('mysql');
+
+/* MySQL 연결 */
+const conn = mysql.createConnection({
+    user: "yy_30220",
+    password: "1234",
+    host: "gondr.asuscomm.com"
+});
+
+conn.query("USE yy_30220");
+/* MySQL 연결 종료 */
 
 let app = express();
 
@@ -41,6 +53,7 @@ app.get('/manamoa', function(req, res) {
 
 app.post('/manamoa', function(req, res) {
     var word = req.body.word;
+    word = qs.escape(word);
     let url = "https://manamoa3.net/bbs/search.php?url=https%3A%2F%2Fmanamoa3.net%2Fbbs%2Fsearch.php&stx=" + word;
     request(url, function(err, response, body) {
         let searchList = [];
@@ -53,6 +66,35 @@ app.post('/manamoa', function(req, res) {
         }
 
         res.render('manamoa', {msg:'제목 검색 결과', list:searchList});
+    });
+});
+
+app.get('/manamoaLike', function(req, res) {
+    res.render('manamoaLike', {});
+});
+
+app.post('/manamoaLike', function(req, res) {
+    var word = req.body.word;
+    word = qs.escape(word);
+    let url = "https://manamoa3.net/bbs/page.php?hid=manga_detail&manga_name=" + word;
+    request(url, function(err, response, body) {
+        $ = cheerio.load(body);
+
+        let result = $(".slot span > .fa-thumbs-up > span");
+        if(result != null) {
+            let searchList = [];
+
+            for(let i = 0; i < result.length; i++) {
+                let data = $(result[i]).text();
+                searchList.push(data);
+            }
+            
+            let sql = "INSERT INTO manga (title, mangaLike) VALUES(?, ?)";
+            for(let i = 0; i < searchList.length; i++) {
+                conn.query(sql, [req.body.word, searchList[i]], function(err, result) {});
+            }
+            res.render('manamoaLike', {msg:'만화 좋아요 결과', list:searchList});
+        }
     });
 });
 

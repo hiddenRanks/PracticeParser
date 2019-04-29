@@ -16,7 +16,7 @@
 
 .menu {
     position: absolute;
-    width: 300px;
+    width: 400px;
     height: 40px;
     text-align: center;
     line-height: 40px;
@@ -25,7 +25,7 @@
 }
 
 .menu > li {
-    width: 50%;
+    width: 33.33%;
     display: block;
     float: left;
     border-right: 1px solid black;

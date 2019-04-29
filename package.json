@@ -30,6 +30,7 @@
     "jquery": "^3.4.0",
     "mysql": "^2.17.1",
     "popper.js": "^1.15.0",
+    "querystring": "^0.2.0",
     "request": "^2.88.0"
   }
 }
