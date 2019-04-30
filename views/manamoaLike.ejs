@@ -8,23 +8,25 @@
         <div class="intro">
             <form method="post">
                 <div>
-                    <label>검색어</label>
+                    <label> 검색어</label>
                     <input type="text" name="word" id="word" placeholder="ex) 베르세르크">
                 </div>
                 <button type="submit">검색하기</button>
             </form>
 
             <% if(typeof list != 'undefined') { %>
-            <table border="1">
+            <h1><%= name %> 결과</h1>
+            <table class="likeTable">
                 <tr>
                     <th width="80%">제목</th>
                     <th>추천</th>
                 </tr>
 
+                <% let bookNum = list.length; %>
                 <% for(let i = 0; i < list.length; i++) { %>
                 <tr>
-                    <td><%= list[i].title %></td>
-                    <td><%= list[i].mangaLike %></td>
+                    <td class="bookNum"><%= name %> <%= bookNum-- %></td>
+                    <td class="bookLike"><%= list[i] %></td>
                 </tr>
                 <% } %>
             </table>

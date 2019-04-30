@@ -74,7 +74,8 @@ app.get('/manamoaLike', function(req, res) {
 });
 
 app.post('/manamoaLike', function(req, res) {
-    var word = req.body.word;
+
+    let word = req.body.word;
     word = qs.escape(word);
     let url = "https://manamoa3.net/bbs/page.php?hid=manga_detail&manga_name=" + word;
     request(url, function(err, response, body) {
@@ -88,12 +89,20 @@ app.post('/manamoaLike', function(req, res) {
                 let data = $(result[i]).text();
                 searchList.push(data);
             }
-            
-            let sql = "INSERT INTO manga (title, mangaLike) VALUES(?, ?)";
-            for(let i = 0; i < searchList.length; i++) {
-                conn.query(sql, [req.body.word, searchList[i]], function(err, result) {});
-            }
-            res.render('manamoaLike', {msg:'만화 좋아요 결과', list:searchList});
+
+            let selectSQL = "SELECT * FROM manga WHERE title LIKE ?";
+            conn.query(selectSQL, [req.body.word], function(err, results) {
+                console.log(results);
+                if(results.length <= 0) {
+                    console.log("true");
+                    let insertSQL = "INSERT INTO manga (title, mangaLike) VALUES(?, ?)";
+                    for(let i = 0; i < searchList.length; i++) {
+                        conn.query(insertSQL, [req.body.word, searchList[i]], function(err, result) {});
+                    }
+                }
+            });
+
+            res.render('manamoaLike', {msg:'만화 좋아요 결과', list:searchList, name:req.body.word});
         }
     });
 });

@@ -1,0 +1,13 @@
+.likeTable {
+    width: 400px;
+    border: 1px solid black;;
+    border-collapse: collapse;
+}
+
+.bookNum {
+    width: 80%;
+}
+
+.bookLike {
+    width: 20%;
+}
