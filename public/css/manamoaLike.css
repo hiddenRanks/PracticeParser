@@ -1,13 +1,28 @@
 .likeTable {
-    width: 400px;
-    border: 1px solid black;;
+    width: 800px;
+    margin: 0 auto;
+    margin-top: 10px;
     border-collapse: collapse;
 }
 
-.bookNum {
-    width: 80%;
+.content {
+    width: 100%;
+    height: 40px;
+    border-bottom: 1px solid black;
 }
 
-.bookLike {
-    width: 20%;
+.content:last-child {
+    border-bottom: none;
+}
+
+.bookNum { 
+    width: 80%;
+    background-color: #F2F2F2;
+}
+.bookLike { width: 20% }
+
+.topTitle {
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    background-color: #E6E6E6;
 }

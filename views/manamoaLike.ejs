@@ -17,15 +17,15 @@
             <% if(typeof list != 'undefined') { %>
             <h1><%= name %> 결과</h1>
             <table class="likeTable">
-                <tr>
+                <tr class="topTitle">
                     <th width="80%">제목</th>
                     <th>추천</th>
                 </tr>
 
                 <% let bookNum = list.length; %>
                 <% for(let i = 0; i < list.length; i++) { %>
-                <tr>
-                    <td class="bookNum"><%= name %> <%= bookNum-- %></td>
+                <tr class="content">
+                    <a href="#"><td class="bookNum"><%= name %> &nbsp;<%= bookNum-- %>화</td></a>
                     <td class="bookLike"><%= list[i] %></td>
                 </tr>
                 <% } %>

@@ -94,11 +94,23 @@ app.post('/manamoaLike', function(req, res) {
             conn.query(selectSQL, [req.body.word], function(err, results) {
                 console.log(results);
                 if(results.length <= 0) {
-                    console.log("true");
+                    console.log("없으니 저장 시작");
                     let insertSQL = "INSERT INTO manga (title, mangaLike) VALUES(?, ?)";
                     for(let i = 0; i < searchList.length; i++) {
-                        conn.query(insertSQL, [req.body.word, searchList[i]], function(err, result) {});
+                        conn.query(insertSQL, [req.body.word, searchList[i]], function(err, results) {});
                     }
+                }
+                else if(result.length > 0) {
+                    console.log("이미 있으니 추천만 업데이트");
+                    let updateSQL = "UPDATE manga SET mangaLike = ?";
+                    for(let i = 0; i < searchList.length; i++) {
+                        conn.query(updateSQL, [searchList[i]], function(err, results) {});
+                    }
+                }
+                else if(searchList.length != results.length) {
+                    console.log("새로 나온 화 추가");
+                    let insertSQL = "INSERT INTO manga (title, mangaLike) VALUES(?, ?)";
+                    conn.query(insertSQL, [seq.body.word, searchList.length], function(err, results) {});
                 }
             });
 
